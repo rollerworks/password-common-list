@@ -1,0 +1,14 @@
+includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - ./src
+    excludePaths:
+        - ./src/Resources
+
+    ignoreErrors:
+        #- '#__construct\(\) does not call parent constructor from .+#'
+        #- '#Access to an undefined property Symfony\\Component\\Validator\\Constraint\:\:#'
+        #- "#Casting to string something that's already string#"
