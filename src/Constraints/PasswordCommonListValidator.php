@@ -40,6 +40,8 @@ final class PasswordCommonListValidator extends ConstraintValidator
         $passwordFile = __DIR__ . '/../../Resources/common_lists/list-' . mb_strlen($value) . '.php';
 
         if (! file_exists($passwordFile)) {
+            echo "File '$passwordFile' does not exist\n";
+
             return;
         }
 
