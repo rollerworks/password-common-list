@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraint;
  * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
-final class PasswordCommonList extends Constraint
+final class NotInPasswordCommonList extends Constraint
 {
     public string $message = 'This Password was found among the 1,000,000 most common passwords. Please use another password.';
 

@@ -34,7 +34,7 @@ You need at least PHP 7.4, mbstring is recommended but not required.
 > To make a field "required" use the [NotBlank constraint](http://symfony.com/doc/current/reference/constraints/NotBlank.html)
 > in combination with the PasswordCommonList validator.
 
-Use the `Rollerworks\Component\PasswordCommonList\Validator\Constraints\PasswordCommonList` constraint as
+Use the `Rollerworks\Component\PasswordCommonList\Validator\Constraints\NotInPasswordCommonList` constraint as
 described in the [Symfony Documentation](https://symfony.com/doc/current/validation.html). This constraint has no special options.
 
 ## Versioning

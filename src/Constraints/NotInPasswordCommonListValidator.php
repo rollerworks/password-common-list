@@ -18,12 +18,12 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
-final class PasswordCommonListValidator extends ConstraintValidator
+final class NotInPasswordCommonListValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint): void
     {
-        if (! $constraint instanceof PasswordCommonList) {
-            throw new UnexpectedTypeException($constraint, PasswordCommonList::class);
+        if (! $constraint instanceof NotInPasswordCommonList) {
+            throw new UnexpectedTypeException($constraint, NotInPasswordCommonList::class);
         }
 
         if ($value === null || $value === '') {

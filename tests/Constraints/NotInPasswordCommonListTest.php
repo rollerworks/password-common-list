@@ -13,28 +13,28 @@ declare(strict_types=1);
 
 namespace Rollerworks\Component\PasswordCommonList\Tests\Constraints;
 
-use Rollerworks\Component\PasswordCommonList\Constraints\PasswordCommonList;
-use Rollerworks\Component\PasswordCommonList\Constraints\PasswordCommonListValidator;
+use Rollerworks\Component\PasswordCommonList\Constraints\NotInPasswordCommonList;
+use Rollerworks\Component\PasswordCommonList\Constraints\NotInPasswordCommonListValidator;
 use Stringable;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 /**
  * @internal
  */
-final class PasswordCommonListValidatorTest extends ConstraintValidatorTestCase
+final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
 {
-    protected function createValidator(): PasswordCommonListValidator
+    protected function createValidator(): NotInPasswordCommonListValidator
     {
-        return new PasswordCommonListValidator();
+        return new NotInPasswordCommonListValidator();
     }
 
     /** @test */
     public function it_ignores_empty_values(): void
     {
-        $this->validator->validate(null, new PasswordCommonList());
+        $this->validator->validate(null, new NotInPasswordCommonList());
         $this->assertNoViolation();
 
-        $this->validator->validate('', new PasswordCommonList());
+        $this->validator->validate('', new NotInPasswordCommonList());
         $this->assertNoViolation();
 
         $this->validator->validate(
@@ -44,7 +44,7 @@ final class PasswordCommonListValidatorTest extends ConstraintValidatorTestCase
                     return '';
                 }
             },
-            new PasswordCommonList()
+            new NotInPasswordCommonList()
         );
         $this->assertNoViolation();
     }
@@ -52,10 +52,10 @@ final class PasswordCommonListValidatorTest extends ConstraintValidatorTestCase
     /** @test */
     public function no_violation_for_unlisted_password(): void
     {
-        $this->validator->validate('#*Xqz%<*8wHi', new PasswordCommonList());
+        $this->validator->validate('#*Xqz%<*8wHi', new NotInPasswordCommonList());
         $this->assertNoViolation();
 
-        $this->validator->validate('nope', new PasswordCommonList());
+        $this->validator->validate('nope', new NotInPasswordCommonList());
         $this->assertNoViolation();
     }
 
@@ -65,7 +65,7 @@ final class PasswordCommonListValidatorTest extends ConstraintValidatorTestCase
      */
     public function it_raises_a_violation_for_common_used_password_as_string(string $password): void
     {
-        $this->validator->validate($password, $constraint = new PasswordCommonList());
+        $this->validator->validate($password, $constraint = new NotInPasswordCommonList());
 
         $this->buildViolation($constraint->message)
             ->setInvalidValue($password)
@@ -93,7 +93,7 @@ final class PasswordCommonListValidatorTest extends ConstraintValidatorTestCase
             }
         };
 
-        $this->validator->validate($value, $constraint = new PasswordCommonList());
+        $this->validator->validate($value, $constraint = new NotInPasswordCommonList());
 
         $this->buildViolation($constraint->message)
             ->setInvalidValue($password)
