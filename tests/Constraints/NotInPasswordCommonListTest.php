@@ -39,7 +39,7 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
 
         $this->validator->validate(
             new class() implements Stringable {
-                public function __toString()
+                public function __toString(): string
                 {
                     return '';
                 }
@@ -87,7 +87,7 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
                 $this->password = $password;
             }
 
-            public function __toString()
+            public function __toString(): string
             {
                 return $this->password;
             }
