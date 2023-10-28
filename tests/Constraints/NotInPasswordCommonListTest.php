@@ -15,15 +15,17 @@ namespace Rollerworks\Component\PasswordCommonList\Tests\Constraints;
 
 use Rollerworks\Component\PasswordCommonList\Constraints\NotInPasswordCommonList;
 use Rollerworks\Component\PasswordCommonList\Constraints\NotInPasswordCommonListValidator;
-use Stringable;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 /**
  * @internal
+ *
+ * @template-extends ConstraintValidatorTestCase<NotInPasswordCommonListValidator>
  */
 final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
 {
-    protected function createValidator(): NotInPasswordCommonListValidator
+    protected function createValidator(): ConstraintValidatorInterface
     {
         return new NotInPasswordCommonListValidator();
     }
@@ -38,7 +40,7 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
 
         $this->validator->validate(
-            new class() implements Stringable {
+            new class() implements \Stringable {
                 public function __toString(): string
                 {
                     return '';
@@ -61,6 +63,7 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
 
     /**
      * @test
+     *
      * @dataProvider provide_unsafe_passwords
      */
     public function it_raises_a_violation_for_common_used_password_as_string(string $password): void
@@ -75,11 +78,12 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
 
     /**
      * @test
+     *
      * @dataProvider provide_unsafe_passwords
      */
     public function it_raises_a_violation_for_common_used_password_as_stringable(string $password): void
     {
-        $value = new class($password) implements Stringable {
+        $value = new class($password) implements \Stringable {
             private string $password;
 
             public function __construct(string $password)

@@ -9,6 +9,3 @@ parameters:
         - ./src/Resources
 
     ignoreErrors:
-        #- '#__construct\(\) does not call parent constructor from .+#'
-        #- '#Access to an undefined property Symfony\\Component\\Validator\\Constraint\:\:#'
-        #- "#Casting to string something that's already string#"
