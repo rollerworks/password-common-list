@@ -13,6 +13,4 @@ namespace Rollerworks\Bundle\PasswordCommonListBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class RollerworksPasswordCommonListBundle extends Bundle
-{
-}
+class RollerworksPasswordCommonListBundle extends Bundle {}
