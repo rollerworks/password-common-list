@@ -1,0 +1,8 @@
+/phpunit.xml
+/composer.lock
+*.phar
+/vendor/
+/.php-cs-fixer.cache
+symfony.lock
+.phpunit.result.cache
+/Resources/common_lists/*.txt
