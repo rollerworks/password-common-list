@@ -15,6 +15,10 @@ use Psr\Container\ContainerInterface as Container;
 use Rollerworks\Component\Version\Version;
 
 return function (Container $container, Version $version, string $branch, ?string $releaseTitle, string $changelog) {
+    if ($version->major === 0) {
+        return;
+    }
+
     $container->get('logger')->info('Updating composer branch-alias');
     $container->get('process')->mustRun(['composer', 'config', 'extra.branch-alias.dev-'.$branch, sprintf('%d.%d-dev', $version->major, $version->minor)]);
 
