@@ -30,8 +30,7 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
         return new NotInPasswordCommonListValidator();
     }
 
-    /** @test */
-    public function it_ignores_empty_values(): void
+    public function test_it_ignores_empty_values(): void
     {
         $this->validator->validate(null, new NotInPasswordCommonList());
         $this->assertNoViolation();
@@ -51,8 +50,7 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /** @test */
-    public function no_violation_for_unlisted_password(): void
+    public function test_no_violation_for_unlisted_password(): void
     {
         $this->validator->validate('#*Xqz%<*8wHi', new NotInPasswordCommonList());
         $this->assertNoViolation();
@@ -61,12 +59,8 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider provide_unsafe_passwords
-     */
-    public function it_raises_a_violation_for_common_used_password_as_string(string $password): void
+    /** @dataProvider provide_unsafe_passwords */
+    public function test_it_raises_a_violation_for_common_used_password_as_string(string $password): void
     {
         $this->validator->validate($password, $constraint = new NotInPasswordCommonList());
 
@@ -76,12 +70,8 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
         ;
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider provide_unsafe_passwords
-     */
-    public function it_raises_a_violation_for_common_used_password_as_stringable(string $password): void
+    /** @dataProvider provide_unsafe_passwords */
+    public function test_it_raises_a_violation_for_common_used_password_as_stringable(string $password): void
     {
         $value = new class($password) implements \Stringable {
             private string $password;
@@ -105,6 +95,7 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
         ;
     }
 
+    /** @return iterable<int, array{0: string}> */
     public function provide_unsafe_passwords(): iterable
     {
         yield ['hunter'];

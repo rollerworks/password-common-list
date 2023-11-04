@@ -16,8 +16,8 @@ To install this package, add `rollerworks/password-common-list` to your composer
 $ php composer.phar require rollerworks/password-common-list
 ```
 
-Now, [Composer] will automatically download all required files, and install them
-for you.
+Now, [Composer][composer] will automatically download all required files,
+and install them for you.
 
 **Note:** To use this library with a Symfony Application make sure the
 `\Rollerworks\Bundle\PasswordCommonListBundle\RollerworksPasswordCommonListBundle` is enabled.
@@ -62,11 +62,12 @@ This library is released under the [MIT license](LICENSE).
 ## Contributing
 
 This is an open source project. If you'd like to contribute,
-please read the [Contributing Guidelines]. If you're submitting
-a pull request, please follow the guidelines in the [Submitting a Patch] section.
+please read the [Contributing Guidelines][contributing]. If you're submitting
+a pull request, please follow the guidelines in the [Submitting a Patch][patches] section.
 
 [Symfony Validator]: (http://symfony.com/doc/current/components/validator.html
 [xato-net-10-million-passwords-1000000]: https://github.com/danielmiessler/SecLists/tree/master/Passwords
-[Composer]: https://getcomposer.org/doc/00-intro.md
-[Contributing Guidelines]: https://github.com/rollerworks/contributing
-[Submitting a Patch]: https://contributing.readthedocs.org/en/latest/code/patches.html
+[composer]: https://getcomposer.org/doc/00-intro.md
+[flex]: https://symfony.com/doc/current/setup/flex.html
+[contributing]: https://contributing.rollerscapes.net/
+[patches]: https://contributing.rollerscapes.net/latest/patches.html

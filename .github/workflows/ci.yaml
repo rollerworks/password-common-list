@@ -22,7 +22,7 @@ jobs:
         steps:
             -
                 name: 'Check out'
-                uses: 'actions/checkout@v2'
+                uses: 'actions/checkout@v4'
 
             -
                 name: 'Set up PHP'
@@ -34,23 +34,23 @@ jobs:
             -
                 name: 'Get Composer cache directory'
                 id: 'composer-cache'
-                run: 'echo "::set-output name=cache-dir::$(composer config cache-files-dir)"'
+                run: 'echo "cache_dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT'
 
             -
                 name: 'Cache dependencies'
-                uses: 'actions/cache@v2'
+                uses: 'actions/cache@v3'
                 with:
-                    path: '${{ steps.composer-cache.outputs.cache-dir }}'
+                    path: '${{ steps.composer-cache.outputs.cache_dir }}'
                     key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
                     restore-keys: 'php-${{ matrix.php-version }}-composer-locked-'
 
             -
                 name: 'Install dependencies'
-                run: 'composer update --no-progress --prefer-stable'
+                run: 'composer install --no-progress'
 
             -
                 name: 'Check the code style'
-                run: 'make cs-full'
+                run: 'make cs'
 
     phpstan:
         name: 'PhpStan'
@@ -65,7 +65,7 @@ jobs:
         steps:
             -
                 name: 'Check out'
-                uses: 'actions/checkout@v2'
+                uses: 'actions/checkout@v4'
 
             -
                 name: 'Set up PHP'
@@ -77,19 +77,19 @@ jobs:
             -
                 name: 'Get Composer cache directory'
                 id: 'composer-cache'
-                run: 'echo "::set-output name=cache-dir::$(composer config cache-files-dir)"'
+                run: 'echo "cache_dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT'
 
             -
                 name: 'Cache dependencies'
-                uses: 'actions/cache@v2'
+                uses: 'actions/cache@v3'
                 with:
-                    path: '${{ steps.composer-cache.outputs.cache-dir }}'
+                    path: '${{ steps.composer-cache.outputs.cache_dir }}'
                     key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
                     restore-keys: 'php-${{ matrix.php-version }}-composer-locked-'
 
             -
                 name: 'Install dependencies'
-                run: 'composer update --no-progress --prefer-stable'
+                run: 'composer install --no-progress'
 
             -
                 name: 'Run PhpStan'
@@ -104,14 +104,9 @@ jobs:
             matrix:
                 include:
                     -
-                        php-version: '8.0'
+                        php-version: '8.1'
                         composer-options: '--prefer-stable'
-                        symfony-version: '5.4'
-
-                    -
-                        php-version: '8.0'
-                        composer-options: '--prefer-stable'
-                        symfony-version: '6.0'
+                        symfony-version: '6.3'
                     -
                         php-version: '8.2'
                         composer-options: '--prefer-stable'
@@ -125,7 +120,7 @@ jobs:
         steps:
             -
                 name: 'Check out'
-                uses: 'actions/checkout@v2'
+                uses: 'actions/checkout@v4'
 
             -
                 name: 'Set up PHP'
@@ -137,13 +132,13 @@ jobs:
             -
                 name: 'Get Composer cache directory'
                 id: 'composer-cache'
-                run: 'echo "::set-output name=cache-dir::$(composer config cache-files-dir)"'
+                run: 'echo "cache_dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT'
 
             -
                 name: 'Cache dependencies'
-                uses: 'actions/cache@v2'
+                uses: 'actions/cache@v3'
                 with:
-                    path: '${{ steps.composer-cache.outputs.cache-dir }}'
+                    path: '${{ steps.composer-cache.outputs.cache_dir }}'
                     key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
                     restore-keys: 'php-${{ matrix.php-version }}-composer-locked-'
 
@@ -158,10 +153,5 @@ jobs:
                     composer update --no-progress $COMPOSER_OPTIONS
 
             -
-                name: 'Install PHPUnit'
-                run: 'vendor/bin/simple-phpunit install'
-
-            -
                 name: 'Run tests'
-                run: |
-                    vendor/bin/simple-phpunit
+                run: make phpunit
