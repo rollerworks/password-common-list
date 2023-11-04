@@ -153,10 +153,5 @@ jobs:
                     composer update --no-progress $COMPOSER_OPTIONS
 
             -
-                name: 'Install PHPUnit'
-                run: 'vendor/bin/simple-phpunit install'
-
-            -
                 name: 'Run tests'
-                run: |
-                    vendor/bin/simple-phpunit
+                run: make phpunit

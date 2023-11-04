@@ -105,6 +105,9 @@ final class NotInPasswordCommonListTest extends ConstraintValidatorTestCase
         ;
     }
 
+    /**
+     * @return iterable<int, array{0: string}>
+     */
     public function provide_unsafe_passwords(): iterable
     {
         yield ['hunter'];
