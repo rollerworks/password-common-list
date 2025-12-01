@@ -24,7 +24,7 @@ and install them for you.
 
 ## Requirements
 
-You need at least PHP 7.4, mbstring is recommended but not required.
+You need at least PHP 8.0 and Symfony 6.4, mbstring is recommended but not required.
 
 ## Usage
 

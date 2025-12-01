@@ -25,7 +25,7 @@ final class NotInPasswordCommonList extends Constraint
 {
     public string $message = 'This Password was found among the 1,000,000 most common passwords. Please use another password.';
 
-    public function __construct(string $message = null, $options = null, array $groups = null, $payload = null)
+    public function __construct(?string $message = null, ?array $options = null, ?array $groups = null, mixed $payload = null)
     {
         parent::__construct($options, $groups, $payload);
 
