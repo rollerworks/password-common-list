@@ -30,7 +30,7 @@ final class NotInPasswordCommonListValidator extends ConstraintValidator
             return;
         }
 
-        if (! \is_scalar($value) && ! (\is_object($value) && method_exists($value, '__toString'))) {
+        if (! \is_scalar($value) && ! $value instanceof \Stringable) {
             throw new UnexpectedValueException($value, 'string');
         }
 
@@ -39,7 +39,7 @@ final class NotInPasswordCommonListValidator extends ConstraintValidator
 
         $passwordFile = __DIR__ . '/../../Resources/common_lists/list-' . mb_strlen($value) . '.php';
 
-        if (! file_exists($passwordFile)) {
+        if (! is_file($passwordFile)) {
             return;
         }
 
