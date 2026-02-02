@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>This Password was found among the 1,000,000 most common passwords. Please use another password.</source>
+                <target>Dieses Passwort wurde unter den 1.000.000 häufigsten Passwörtern gefunden. Wählen Sie ein anderes Passwort.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
