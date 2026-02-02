@@ -3,7 +3,7 @@
 # Always use LF
 core.autocrlf=lf
 
-.editorconfig
+.editorconfig export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
 .php-cs-fixer.dist.php export-ignore
