@@ -10,6 +10,6 @@ parameters:
         - ./src
         - ./tests
     excludePaths:
-        - ./src/Resources
+        - ./Resources
 
     #ignoreErrors:
